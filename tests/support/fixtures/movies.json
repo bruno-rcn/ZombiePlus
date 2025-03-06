@@ -1,0 +1,83 @@
+{
+    "guerra_mundial_z": {
+        "title": "Guerra Mundial Z",
+        "overview": "Uma terrível pandemia assola o mundo, transformando humanos em zumbis vorazes. Gerry Lane, um ex-investigador da ONU, embarca em uma corrida contra o tempo para encontrar a origem da infecção e uma possível cura.",
+        "release_year": 2013,
+        "company": "Paramount Pictures",
+        "feature": false,
+        "cover": "/images/world_war_z.png"
+    },
+    "madrugada_dos_mortos": {
+        "title": "Madrugada dos Mortos",
+        "overview": "Um grupo de sobreviventes se refugia em um shopping center enquanto um apocalipse zumbi assola o mundo.",
+        "release_year": 2004,
+        "company": "Universal Pictures",
+        "feature": false,
+        "cover": "/images/dawn_of_the_dead.png"
+    },
+    "exterminio": {
+        "title": "Extermínio",
+        "overview": "Após um vírus mortal se espalhar pelo Reino Unido, um pequeno grupo de sobreviventes luta para escapar dos infectados violentos.",
+        "release_year": 2002,
+        "company": "Fox Searchlight Pictures",
+        "feature": false,
+        "cover": "/images/28_days_later.png"
+    },
+    "zumbilandia": {
+        "title": "Zumbilândia",
+        "overview": "Em um mundo tomado por zumbis, um grupo improvável de sobreviventes une forças para encontrar um refúgio seguro.",
+        "release_year": 2009,
+        "company": "Columbia Pictures",
+        "feature": false,
+        "cover": "/images/zombieland.png"
+    },
+    "a_noite_dos_mortos_vivos": {
+        "title": "A Noite dos Mortos-Vivos",
+        "overview": "Um grupo de pessoas fica preso em uma casa enquanto os mortos-vivos começam a se levantar e atacar os vivos.",
+        "release_year": 1968,
+        "company": "Image Ten",
+        "feature": false,
+        "cover": "/images/night_of_the_living_dead.png"
+    },
+    "resident_evil_o_hospede_maldito": {
+        "title": "Resident Evil: O Hóspede Maldito",
+        "overview": "Baseado no famoso jogo de videogame, acompanha Alice e um grupo de soldados tentando conter um surto zumbi dentro de uma instalação subterrânea.",
+        "release_year": 2002,
+        "company": "Netflix",
+        "feature": false,
+        "cover": "/images/resident_evil.png"
+    },
+    "todo_mundo_quase_morto": {
+        "title": "Todo Mundo Quase Morto",
+        "overview": "Uma comédia britânica que acompanha Shaun, um homem comum que precisa lidar com um apocalipse zumbi enquanto tenta reconquistar sua namorada.",
+        "release_year": 2004,
+        "company": "Universal Pictures",
+        "feature": false,
+        "cover": "/images/shaun_of_the_dead.png"
+    },
+    "rec": {
+        "title": "REC",
+        "overview": "Uma equipe de jornalistas espanhóis fica presa dentro de um prédio em quarentena, onde os moradores são transformados em zumbis por um vírus misterioso.",
+        "release_year": 2007,
+        "company": "Filmax",
+        "feature": false,
+        "cover": "/images/rec.png"
+    },
+    "eu_sou_a_lenda": {
+        "title": "Eu Sou a Lenda",
+        "overview": "Após um vírus devastador dizimar a humanidade, o cientista Robert Neville luta para sobreviver em uma Nova York pós-apocalíptica cercado por criaturas mutantes.",
+        "release_year": 2007,
+        "company": "Warner Bros.",
+        "feature": false,
+        "cover": "/images/i_am_legend.png"
+    },
+    "invasao_zumbi": {
+        "title": "Invasão Zumbi",
+        "overview": "Passageiros de um trem na Coreia do Sul precisam lutar por suas vidas quando um surto zumbi explode durante a viagem.",
+        "release_year": 2016,
+        "company": "Next Entertainment World",
+        "feature": false,
+        "cover": "/images/train_to_busan.png"
+    }
+}
+  

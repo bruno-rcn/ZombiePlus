@@ -1,0 +1,175 @@
+QAX - Playwright Zombie Edition
+-------------------------------
+
+Preparancao de ambientes e ferramentas:
+
+- IDE - VScode
+- Noje.js
+- Windows Terminal
+- Git bash
+
+
+docker ps -> lista containers ativos
+docker ps -a -> lista todos os containers mesmo que nao ligados
+docker rm nome_container -> remove o container
+docker-compose up -d -> iniciar o aruqivo e banco de dados do projeto
+
+
+Inicio do projeto
+- npm init playwright@latest 
+
+Obs: Para iniciar o projeto em outras maquinas: npm install  (para instalar as bibliotecas utilizadas no projeto)
+
+
+Para iniciar:
+subir os containers: docker-compose up -d (na raiz do projeto)
+logar no localhost:16543
+rodar na pasta de api ./db.sh)
+api: npm run dev (na pasta de api)
+web: npm run dev (na pasta de web)
+
+login admin: admin@zombieplus.com pwd123
+
+-- O -D serve para instalar a dependencia em dev
+-- doc - https://fakerjs.dev/
+faker: npm i @faker-js/faker -D
+
+
+
+
+
+======================================================================================================
+
+---> Dicas de testes
+
+Mapeando elemento com Regex:
+  a[href$="register"] -> valor da propriedade termina com register
+  a[href*="register"] -> valor da propriedade contem register
+  a[href^="register"] -> valor da propriedade comeca com register
+
+
+test('Deve cadastrar um lead na fila de espera', async ({ page }) => {
+  Obs: A identificacao do componente pode ser colocada dentro dos parentheses da funcao:
+
+  await page.click('//button[text()="Aperte o play... se tiver coragem"]')
+  
+  // Utiliza a barra invertida no texto para criar uma Regex e assim fica como se tivesse utilizando o contains no texto:
+  await page.getByRole('button', {name: "/Aperte o play/"}).click()
+
+  // Buscar elemento por propiedade ELEMENTO[PROPRIEDADE="VALOR"]:
+  await page.locator('input[name="email"]').fill('bruno@ricardo.com')
+
+    // Buscar primeiro elemento Pai (modal) depois o elemento filho (titulo da modal)
+  expect(
+    page.getByTestId('modal').getByRole('heading')
+  ).toHaveText('Fila de espera')
+
+  // Buscar um elemento flutuante (tost) que sai muito rapido da tela:
+	await page.getByText('seus dados conosco').click()  // buscar pelo texto do elemento e clicar nele
+    const content = await page.content()  // a funcao content() buscar o html da pagina
+    console.log(content)  // aqui vai imprimir no console o html que a funcao acima buscou que foi no momento do clique no elemento
+  // depois disso vai na tela do playwright na aba de console e pegue o codigo html de la e cole em um arquivo .html no projeto. Agora pode buscar o elemento
+
+	// Como o elemento aparece e sai da tela, a linha abaixo valida que o mesmo deve aparecer em ate 2seg
+  expect(page.locator('.toast')).toBeHidden({timeout: 2000})
+});
+
+
+
+--> Na hora de criar uma class sera necessario passar o contrutor com o parametro page, que vira dos testes pois a biblioteca de page nao pode ser acessada sem o contrutor recebendo ela como argumento nos testes
+export class LandingPage {
+
+    constructor(page){
+        this.page = page
+    }
+}
+
+--> Dessa maneira os testes ficam:
+test('Deve cadastrar um lead na fila de espera', async ({ page }) => {
+  const landPage = new LandingPage(page) // aqui sera adicionado os metodos de page para que possam ser usados pelo contrutudor da class PageObj
+  await landPage.visit()
+  await landPage.openModel()
+  await landPage.submitLeadForm()
+  await landPage.toastHaveText()
+});
+
+=======================================================================================
+
+Foi criado o arquivo index.js para ficar como arquivo principal do projeto. Nele sera importado a {page} do playwright 
+assim, nao sera preciso importar nos arquivo de teste
+Dessa maneira, sempre que criar uma page, ao inves de importar no arquivo de teste, vc importa no index que ja vai servir para todos
+
+
+arquivo index:
+
+import { test as base, expect } from '@playwright/test';
+
+const { LoginPage } = require('../pages/LoginPage')
+const { Toast } = require('../pages/Components')
+const { MoviesPage } = require('../pages/MoviesPage')
+const { LandingPage } = require('../pages/LandingPage')
+
+// o [...page] recebe todas as funcoes originais do page original do playwright (vindo como paremetro ({page})) 
+// Assim, nos arquivos de testes sera usado o novo contexto page [page:]
+// E tudo o que for criado dentro do bloco de use [que contem o ...page] sera visivel nos arquivos de teste atraves do novo contexto [page:] criado
+// Fica como encapsulado o contexto de page objt e as funcoes do page tudo dentro de um novo contexto
+const test = base.extend({
+    page: async ({ page }, use) => {
+        await use({
+            ...page,
+            loginPage: new LoginPage(page),
+            landPage: new LandingPage(page),
+            moviesPage: new MoviesPage(page),
+            componentToast: new Toast(page)
+        })
+    }
+})
+
+export { test, expect }
+
+===================================================================
+
+arquivo: movies.specs.js
+antes:
+  const { test, expect } = require('@playwright/test')
+
+  const { LoginPage } = require('../pages/LoginPage')
+  const { Toast } = require('../pages/Components')
+  const { MoviesPage } = require('../pages/MoviesPage')
+
+  let loginPage
+  let toast
+  let moviesPage
+
+  test.beforeEach(async({page}) =>{
+      loginPage = new LoginPage(page)
+      toast = new Toast(page)
+      moviesPage = new MoviesPage(page)
+  })
+
+  test('Deve poder cadastrar um novo filme', async ({page}) => {
+    await loginPage.visit()
+    await page.goto()
+  })
+
+
+depois:
+  // esse test vem do arquivo index
+  const { test } = require('../support')
+
+  // o parametro ({page}) e o criado no arquivo index
+  test('Deve poder cadastrar um novo filme', async ({page}) => {
+    await page.loginPage.visit()
+    await page.moviesPage.isLoggedIn()
+    await page.componentToast.haveText('UhullCadastro realizado com sucesso!')
+  })
+
+
+
+
+
+
+
+
+
+
