@@ -35,8 +35,20 @@ login admin: admin@zombieplus.com pwd123
 faker: npm i @faker-js/faker -D
 
 
+Na hora de fazer o push caso o computador apareca a msg de negado pode rodar: 
+  ssh-keygen
+  clicar enter
+  
+  ir no github
+  perfil
+  setting
+  ssh and GPG keys
+  ir para o terminal, copiar o caminho da chave 
+  digitar cat e colar - cat /C:/caminho
+  clicar enter e copiar o resultado
+  ir de volta ao github e colara chave em key e dar um nome
 
-
+autorizacao criada
 
 ======================================================================================================
 
