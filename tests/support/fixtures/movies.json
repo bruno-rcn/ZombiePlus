@@ -5,7 +5,7 @@
         "release_year": 2013,
         "company": "Paramount Pictures",
         "feature": false,
-        "cover": "/images/world_war_z.png"
+        "cover": "/covers/movies/wwz.png"
     },
     "madrugada_dos_mortos": {
         "title": "Madrugada dos Mortos",
@@ -13,7 +13,7 @@
         "release_year": 2004,
         "company": "Universal Pictures",
         "feature": false,
-        "cover": "/images/dawn_of_the_dead.png"
+        "cover": "/covers/movies/madrugada.jpg"
     },
     "exterminio": {
         "title": "Extermínio",
@@ -21,7 +21,7 @@
         "release_year": 2002,
         "company": "Fox Searchlight Pictures",
         "feature": false,
-        "cover": "/images/28_days_later.png"
+        "cover": "/covers/movies/exterminio.jpg"
     },
     "zumbilandia": {
         "title": "Zumbilândia",
@@ -29,7 +29,7 @@
         "release_year": 2009,
         "company": "Columbia Pictures",
         "feature": false,
-        "cover": "/images/zombieland.png"
+        "cover": "/covers/movies/zumbilandia.jpg"
     },
     "a_noite_dos_mortos_vivos": {
         "title": "A Noite dos Mortos-Vivos",
@@ -37,15 +37,15 @@
         "release_year": 1968,
         "company": "Image Ten",
         "feature": false,
-        "cover": "/images/night_of_the_living_dead.png"
+        "cover": "/covers/movies/mortos-vivos.jpg"
     },
     "resident_evil_o_hospede_maldito": {
         "title": "Resident Evil: O Hóspede Maldito",
         "overview": "Baseado no famoso jogo de videogame, acompanha Alice e um grupo de soldados tentando conter um surto zumbi dentro de uma instalação subterrânea.",
         "release_year": 2002,
         "company": "Netflix",
-        "feature": false,
-        "cover": "/images/resident_evil.png"
+        "feature": true,
+        "cover": "/covers/movies/resident-evil.jpg"
     },
     "todo_mundo_quase_morto": {
         "title": "Todo Mundo Quase Morto",

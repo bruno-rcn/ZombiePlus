@@ -1,13 +1,19 @@
 const {expect} = require('@playwright/test')
 
-export class LoginPage{
+export class Login{
 
     constructor(page){
         this.page = page
     }
 
+    async doLogin(email, password, username){
+        await this.visit()
+        await this.loginSubmit(email, password)
+        await this.isLoggedIn(username)
+    }
+
     async visit(){
-        await this.page.goto('http://localhost:3000/admin/login')
+        await this.page.goto('/admin/login')
 
         const loginForm = this.page.locator('.login-form')
         await expect(loginForm).toBeVisible()
@@ -22,5 +28,9 @@ export class LoginPage{
     async alertHaveText(text){
         const alert = this.page.locator('span[class$="alert"]')
         await expect(alert).toHaveText(text)
+    }
+
+    async isLoggedIn(username){
+        await expect(this.page.locator('.logged-user')).toHaveText(`Olá, ${username}`)
     }
 }

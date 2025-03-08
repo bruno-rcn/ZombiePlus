@@ -111,36 +111,6 @@ Foi criado o arquivo index.js para ficar como arquivo principal do projeto. Nele
 assim, nao sera preciso importar nos arquivo de teste
 Dessa maneira, sempre que criar uma page, ao inves de importar no arquivo de teste, vc importa no index que ja vai servir para todos
 
-
-arquivo index:
-
-import { test as base, expect } from '@playwright/test';
-
-const { LoginPage } = require('../pages/LoginPage')
-const { Toast } = require('../pages/Components')
-const { MoviesPage } = require('../pages/MoviesPage')
-const { LandingPage } = require('../pages/LandingPage')
-
-// o [...page] recebe todas as funcoes originais do page original do playwright (vindo como paremetro ({page})) 
-// Assim, nos arquivos de testes sera usado o novo contexto page [page:]
-// E tudo o que for criado dentro do bloco de use [que contem o ...page] sera visivel nos arquivos de teste atraves do novo contexto [page:] criado
-// Fica como encapsulado o contexto de page objt e as funcoes do page tudo dentro de um novo contexto
-const test = base.extend({
-    page: async ({ page }, use) => {
-        await use({
-            ...page,
-            loginPage: new LoginPage(page),
-            landPage: new LandingPage(page),
-            moviesPage: new MoviesPage(page),
-            componentToast: new Toast(page)
-        })
-    }
-})
-
-export { test, expect }
-
-===================================================================
-
 arquivo: movies.specs.js
 antes:
   const { test, expect } = require('@playwright/test')

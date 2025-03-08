@@ -1,13 +1,13 @@
 import { expect } from '@playwright/test';
 
-export class LandingPage {
+export class Leads {
 
     constructor(page){
         this.page = page
     }
 
     async visit(){
-        await this.page.goto('http://localhost:3000/');
+        await this.page.goto('/');
     }
 
     async openModel(){

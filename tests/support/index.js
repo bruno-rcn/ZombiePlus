@@ -1,19 +1,33 @@
 import { test as base, expect } from '@playwright/test';
 
-const { LoginPage } = require('../pages/LoginPage')
-const { Toast } = require('../pages/Components')
-const { MoviesPage } = require('../pages/MoviesPage')
-const { LandingPage } = require('../pages/LandingPage')
+const { Login } = require('./actions/Login')
+const { Toast } = require('./actions/Components')
+const { Popup } = require('./actions/Components')
+const { Movies } = require('./actions/Movies')
+const { Leads } = require('./actions/Leads')
+const { Api } = require('./api')
 
 const test = base.extend({
     page: async ({ page }, use) => {
-        await use({
-            ...page,
-            loginPage: new LoginPage(page),
-            landPage: new LandingPage(page),
-            moviesPage: new MoviesPage(page),
-            componentToast: new Toast(page)
-        })
+
+        // context vai receber as funcoes nativas do playwright
+        const context = page
+
+        context['login'] = new Login(page),
+        context['leads'] = new Leads(page),
+        context['movies'] = new Movies(page),
+        context['componentToast'] = new Toast(page)
+        context['componentPopup'] = new Popup(page)
+
+        await use(context)
+    },
+    request: async ({request}, use) => {
+        const context = request
+
+        context['api'] = new Api(request)
+        await context['api'].setToken()
+
+        await use(context)
     }
 })
 
